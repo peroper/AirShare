@@ -36,6 +36,9 @@
 - (BOOL) hasSeenIdentifier:(NSString*)identifier {
     return NO;
 }
-- (void) start {}
+- (void) start {
+
+    NSLog(@"Starting!?");
+}
 - (void) stop {}
 @end

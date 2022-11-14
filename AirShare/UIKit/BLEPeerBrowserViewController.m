@@ -86,7 +86,7 @@
 }
 
 - (void) setupBroadcastButton {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Broadcast" style:UIBarButtonItemStyleBordered target:self action:@selector(broadcastButtonPressed:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Broadcast" style:UIBarButtonItemStylePlain target:self action:@selector(broadcastButtonPressed:)];
 }
 
 - (void) broadcastButtonPressed:(id)sender {

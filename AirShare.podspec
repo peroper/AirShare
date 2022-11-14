@@ -8,15 +8,15 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/chrisballinger/AirShare.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/ChatSecure'
 
-  s.ios.deployment_target = '7.0'
-  s.osx.deployment_target = '10.8'
+  s.ios.deployment_target = '14.0'
+  # s.osx.deployment_target = '10.8'
   s.requires_arc = true
 
   s.default_subspec = 'AirShare'
 
   s.dependency 'libsodium'
-  s.dependency 'CocoaLumberjack', '~> 1.9'
-  s.dependency 'PureLayout', '~> 2.0'
+  # s.dependency 'CocoaLumberjack'
+  s.dependency 'PureLayout'
   s.frameworks = 'CoreBluetooth'
 
   s.subspec 'AirShare' do |ss|

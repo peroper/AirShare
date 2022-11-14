@@ -94,7 +94,7 @@
 }
 
 - (void) broadcastPeripheral {
-    if (self.peripheralManager.state == CBPeripheralManagerStatePoweredOn) {
+    if (self.peripheralManager.state == CBManagerStatePoweredOn) {
         if (!self.serviceAdded) {
             [self.peripheralManager addService:self.dataService];
             self.serviceAdded = YES;
@@ -102,7 +102,7 @@
         
         if (!self.peripheralManager.isAdvertising) {
             [self.peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey: @[self.dataService.UUID],
-                                                       CBAdvertisementDataLocalNameKey: @"AirShare"}];
+                                                       CBAdvertisementDataLocalNameKey: @"AirShareDemo"}];
         }
     } else {
         NSLog(@"peripheral not powered on");
@@ -111,12 +111,11 @@
 
 #pragma mark CBPeripheralManagerDelegate
 
-- (void) peripheralManager:(CBPeripheralManager *)peripheral willRestoreState:(NSDictionary *)dict {
+- (void)peripheralManager:(CBPeripheralManager *)peripheral willRestoreState:(NSDictionary<NSString *,id> *)dict {
     NSLog(@"peripheralManager:willRestoreState: %@", dict);
     NSArray *restoredServices = dict[CBPeripheralManagerRestoredStateServicesKey];
     NSDictionary *restoredAdvertisementDict = dict[CBPeripheralManagerRestoredStateAdvertisementDataKey];
 }
-
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheralManager {
     NSLog(@"peripheralManagerDidUpdateState: %@", peripheralManager);
@@ -168,7 +167,6 @@
         });
         [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
     }];
-    
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request {

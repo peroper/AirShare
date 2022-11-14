@@ -68,7 +68,10 @@ static NSString * const kCachedLocalPeerKey = @"kCachedLocalPeerKey";
     peerBrowser.mode = BLEPeerBrowserModeSend;
     NSDictionary *outgoingHeaders = @{@"author": self.authorTextField.text,
                                       @"quote": self.quoteTextView.text};
-    [peerBrowser addOutgoingData:nil headers:outgoingHeaders];
+
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:outgoingHeaders options:0 error:nil];
+
+    [peerBrowser addOutgoingData:jsonData headers:outgoingHeaders];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:peerBrowser];
     [self presentViewController:nav animated:YES completion:nil];
 }

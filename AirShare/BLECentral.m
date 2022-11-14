@@ -70,7 +70,7 @@
 }
 
 - (void) scanForPeripherals {
-    if (self.centralManager.state == CBCentralManagerStatePoweredOn) {
+    if (self.centralManager.state == CBManagerStatePoweredOn) {
         BOOL allowDuplicates = NO;
         NSArray *services = @[self.serviceUUID];
         [self.centralManager scanForPeripheralsWithServices:services
@@ -83,7 +83,7 @@
 - (void) setupCentral {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
     if (self.supportsBackground) {
-        [options setObject:self.serviceUUID.UUIDString forKey:CBPeripheralManagerOptionRestoreIdentifierKey];
+        [options setObject:self.serviceUUID.UUIDString forKey:CBCentralManagerOptionRestoreIdentifierKey];
     }
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self
                                                            queue:self.eventQueue
